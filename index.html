@@ -1,0 +1,126 @@
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="./js/script.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+    <center>
+        <div class="time-wrapper">
+            <span class="time-disp">
+            </span>
+            <span class="date-disp">
+            </span>
+        </div>
+    </center>
+    <div class="progress-section">
+        <div class="countdown-container">
+            <div class="countdown">
+                <span class="rem-months cdelem">
+                </span>
+                <span class="rem-weeks cdelem">
+                </span>
+                <span class="rem-days cdelem">
+                </span>
+                <span class="rem-hours cdelem">
+                </span>
+                <span class="rem-minutes cdelem">
+                </span>
+                <span class="rem-seconds cdelem">
+                </span>
+            </div>
+            <div class="countdown-labels">
+                <span class="rem-months-label">
+                </span>
+                <span class="rem-weeks-label">
+                </span>
+                <span class="rem-days-label">
+                </span>
+                <span class="rem-hours-label">
+                </span>
+                <span class="rem-minutes-label">
+                </span>
+                <span class="rem-seconds-label">
+                </span>
+            </div>
+            <div class="rem-text">remaining</div>
+        </div>
+        <div class="from-to-year">
+        </div>
+        <div class="year-progress">
+        </div>
+        <div class="progress-count">
+        </div>
+    </div>
+
+    <div class="form-inline btns">
+        <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()"></button>
+        <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()"></button>
+    </div>
+
+    <div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
+        <div class="card">
+            <h3 class="card-header" id="month-year" onclick="showCalendar(new Date().getMonth(), new Date().getFullYear());"></h3>
+            <table class="table table-bordered table-responsive-sm" id="calendar">
+                <thead>
+                    <tr>
+                        <th class="weekend">S</th>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>T</th>
+                        <th>F</th>
+                        <th class="weekend">S</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                </tbody>
+            </table>
+            <div class="event-label"></div>
+        </div>
+    </div>
+    <form class="form-inline jump-to">
+        <label class="lead mr-2 ml-2" for="month">Jump To: </label><br><br>
+        <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+            <option value=0>JAN</option>
+            <option value=1>FEB</option>
+            <option value=2>MAR</option>
+            <option value=3>APR</option>
+            <option value=4>MAY</option>
+            <option value=5>JUN</option>
+            <option value=6>JUL</option>
+            <option value=7>AUG</option>
+            <option value=8>SEP</option>
+            <option value=9>OCT</option>
+            <option value=10>NOV</option>
+            <option value=11>DEC</option>
+        </select>
+        <label for="year"></label>
+        <select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+        </select>
+    </form>
+    <script>
+        (function() {
+            var year_start = 1971;
+            var year_end = (new Date).getFullYear(); //current year
+            var selected_year = 1992; // 0 first option
+
+            var option = `<option>${year_start-1}</option>`; //first option
+
+            for (var i = 0; i <= (2070 - year_start); i++) {
+                var year = (year_start + i);
+                var selected = (year == selected_year) ? ' selected' : '';
+                option += '<option value="' + year + '"' + selected + '>' + year + '</option>';
+            }
+            document.getElementById('year').innerHTML = option;
+        })();
+    </script>
+    <script src="./js/script.js"></script>
+    <script src="./js/calender_script.js"></script>
+</body>
+
+</html>

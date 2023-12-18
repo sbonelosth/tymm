@@ -1,0 +1,350 @@
+@font-face {
+    font-family: montserrat;
+    src: url('../fonts/montserrat/Montserrat-Regular.otf');
+}
+
+@font-face {
+    font-family: orbitron;
+    src: url('../fonts/orbitron/Orbitron-Black.ttf');
+}
+
+@font-face {
+    font-family: spincycle;
+    src: url('../fonts/spincycle/spincycle_ot.otf');
+}
+
+body {
+    font-family: montserrat;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+    font-size: 13px;
+    color: #EBEBEB;
+    background-color: #171717;
+    text-shadow: 1px 1px 2px #111;
+    background-repeat: repeat;
+    background-size: 100%;
+    background-position: 0 0;
+    background-image: url("../res/timeshd.jpg");
+}
+
+.time-wrapper {
+    padding: 8px 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 30px;
+    background-image: #171717;
+    transition: .1s ease-out;
+    z-index: 10;
+}
+
+.period-disp {
+    position: fixed;
+    top: 9px;
+    left: 70px;
+    font-size: 16px;
+}
+
+.rem-text {
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 5px;
+    text-shadow: 1px 1px 2px #000;
+    transform: translateX(35px);
+}
+
+.countdown,
+.countdown-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #ebebeb;
+    margin-top: -10px;
+    transition: .5s;
+}
+
+.countdown-labels {
+    position: absolute;
+    left: 35px;
+    top: 0;
+    height: 25px;
+    font-size: 15px;
+    line-height: 28px;
+    text-shadow: 1px 1px 2px #111;
+}
+
+.rem-months,
+.rem-days,
+.rem-weeks,
+.rem-hours,
+.rem-minutes,
+.rem-seconds {
+    width: 22px;
+    height: 22px;
+    background: #EBEBEB;
+    color: #171717;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px #111;
+    text-shadow: 1px 1px 2px #EBEBEB;
+}
+
+.progress-section {
+    position: absolute;
+    margin-top: 5vh;
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.year-progress {
+    text-align: center;
+    font-size: 14px;
+    color: #171717;
+    line-height: 65px;
+    width: 165px;
+    height: 10px;
+    margin-top: 25px;
+    background: #EBEBEB;
+
+    border-radius: 10px;
+    box-shadow:
+        0 0 0 1px rgb(150 150 150 / 100%),
+        0 0 0 2px rgb(255 255 255 / 75%);
+    overflow: hidden;
+}
+
+.progress-bar {
+    position: relative;
+    height: 10px;
+    top: 0;
+    background: rgba(22, 191, 98);
+    box-shadow: 0 0 10px #111;
+}
+
+.progress-count {
+    position: absolute;
+    right: 0;
+    margin-top: 40px;
+    font-size: 13px;
+}
+
+.from-to-year {
+    position: absolute;
+    right: 0;
+    font-family: orbitron;
+    font-size: 20px;
+}
+
+.card {
+    margin-top: 18vh;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+    transform: translateY(-10vh) scale(1);
+}
+
+td, th {
+    padding: 8px;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+}
+
+td {
+    padding-bottom: 20px;
+    font-size: 15px;
+}
+
+th {
+    padding: 10px 0;
+}
+
+tbody>tr>:nth-child(1),
+tbody>tr>:nth-child(7n),
+.weekend, .event {
+    color: #FB476A;
+}
+
+.event-label {
+    width: 60%;
+    margin: 0 auto;
+    max-width: 300px;
+    color: whitesmoke;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.month {
+    color: #EC407A;
+}
+
+.card-header {
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.today-bg {
+    font-size: 35px;
+    padding: 0 0 5px 0;
+    color: deepskyblue;
+    border-top: 4px solid deepskyblue;
+    font-weight: bold;
+    background: rgba(22, 191, 98, 0.3);
+    transition: .4s;
+}
+
+button {
+    text-decoration: none;
+    height: 40px;
+    width: 40px;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #F24A6B;
+    background: transparent;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 0 7px #171717;
+    outline: none;
+}
+
+button:hover {
+    animation: opac 1s ease-out;
+}
+
+@keyframes opac {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#previous,
+#next {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-image: url('../res/prev50.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+}
+
+#next {
+    background-image: url('../res/next50.png');
+}
+
+.col-sm-4 {
+    height: 30px;
+    text-decoration: none;
+    border: none;
+}
+
+.lead {
+    line-height: 0;
+}
+
+.jump-to {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    transform: translateX(38%);
+}
+
+select {
+    background: #EC407A;
+    color: #EBEBEB;
+    font-weight: bold;
+    font-family: montserrat;
+    border-radius: 20px;
+    padding: 5px;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 0 7px #171717;
+    outline: none;
+}
+
+.btns {
+    width: 95%;
+    margin: 0 auto;
+    transform: translateY(45vh);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media screen and (max-width:640px) {
+    .container {
+        transform: translateY(-4rem) scale(1);
+    }
+
+    body {
+        background-image: url("../res/times.jpg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: 0 0;
+    }
+    
+    .jump-to {
+        transform: translateX(0);
+    }
+
+}
+
+@media screen and (max-height:560px) {
+    .container {
+        transform: translateY(-10rem) scale(0.8);
+    }
+
+    body {
+        background-image: url("../res/timeshd.jpg");
+        background-repeat: repeat;
+        background-size: 100%;
+        background-position: 0 0;
+    }
+    
+    .jump-to {
+        transform: translateX(38%);
+    }
+
+}
+
+@media screen and (max-height:330px) {
+    .container {
+        transform: translateY(-9rem) scale(0.65);
+    }
+
+    body {
+        background-image: url("../res/timeshd.jpg");
+        background-repeat: repeat;
+        background-size: 100%;
+        background-position: 0 0;
+    }
+    
+    .jump-to {
+        transform: translateX(38%);
+    }
+
+}
