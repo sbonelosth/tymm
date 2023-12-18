@@ -302,7 +302,7 @@ select {
 
     body {
         background-image: url("../res/times.jpg");
-        background-repeat: no-repeat;
+        background-repeat: repeat;
         background-size: 100%;
         background-position: 0 0;
     }
@@ -315,7 +315,7 @@ select {
 
 @media screen and (max-height:560px) {
     .container {
-        transform: translateY(-10rem) scale(0.8);
+        transform: translateY(-9rem) scale(0.8);
     }
 
     body {
@@ -333,7 +333,7 @@ select {
 
 @media screen and (max-height:330px) {
     .container {
-        transform: translateY(-9rem) scale(0.65);
+        transform: translateY(-8rem) scale(0.65);
     }
 
     body {
