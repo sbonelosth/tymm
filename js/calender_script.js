@@ -8,6 +8,25 @@ let months = ["January", "February", "March", "April", "May", "June", "July", "A
 
 let monthYearDOM = q("#month-year");
 
+const otherdays = [
+  "The trouble is, you think you think you have time. ~ J. Kornfield",
+  "Time is extremely valuable. ~ Kanye West",
+  "There's never enough time to do all the nothing you want. ~ B. Watterson",
+  "Oh yes, the past can hurt. But you can either run from it or learn from it. ~ Rafiki (The Lion King)",
+  "Today is a good day to try. ~ Quasimodo (The Hunchback of Notre Dame)",
+  "You may not own this day, but you can you it. ~ H. Mackey",
+  "Time is money. ~ B. Franklin",
+  "Time is a storm in which we are all lost. ~ W. C. Williams",
+  "Suspect each moment, for it is a thief, tiptoeing away with more than it brings. ~ J. Updike",
+  "Men talk of killing time, while time quietly kills them. ~ D. Boucicault",
+  "Regret for wasted time is more wasted time. ~ M. Cooley",
+  "Time spent with cats is never wasted. ~ Colette",
+  "The way we spend our time defines who we are. ~ J. Estrin",
+  "It's not that we have little time, but more that we waste a good deal of it. ~ Seneca",
+  "Either you run the day, or the day runs you. ~ J. Rohn",
+  "If we take care of the moments, the years will take care of themelves. ~ M. Edgeworth"
+];
+
 // Calling the calendar function
 showCalendar(currentMonth, currentYear);
 
@@ -71,101 +90,95 @@ function showCalendar(month, year) {
         // Color today's date and label events.
         if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
           // January, February event labels.
-          if (today.getDate() === 1 && today.getMonth() === 0) {
-            q(".event-label").innerHTML = "Happy New Year, Make It Count!";
-          }
-          else if (today.getDate() === 21 && today.getMonth() === 0) {
-            q(".event-label").innerHTML = "Happy Birthday, Rapsody!";
+          if (today.getMonth() === 0) {
+            if (today.getDate() === 1) q(".event-label").innerHTML = "Happy New Year, make it count.";
+            else if (today.getDate() === 21) q(".event-label").innerHTML = "It's Rapsody's birthday today";
+            else {
+              let rand = Math.floor(Math.random()*otherdays.length);
+              q(".event-label").innerHTML = otherdays[rand];
+            }
           }
           // February event labels.
-          else if (today.getDate() === 14 && today.getMonth() === 1) {
-            q(".event-label").innerHTML = "Happy Valentine's Day!";
-          }
-          else if (today.getDate() === 23 && today.getMonth() === 1) {
-            q(".event-label").innerHTML = "Happy Birthday, Little Simz!";
+          else if (today.getMonth() === 1) {
+            if (today.getDate() === 14) q(".event-label").innerHTML = "Valentine's day";
+            else if (today.getDate() === 23) q(".event-label").innerHTML = "The day Little Simz was born";
+            else {
+              let rand = Math.floor(Math.random()*otherdays.length);
+              q(".event-label").innerHTML = otherdays[rand];
+            }
           }
           // March event labels.
-          else if (today.getDate() === 21 && today.getMonth() === 2) {
-            q(".event-label").innerHTML = "Happy Human Rights Day!";
-          }
-          else if (today.getDate() === 22 && today.getMonth() === 2 && today.getFullYear() === 2021) {
-            q(".event-label").innerHTML = "Human Rights Day observed!";
-          }
-          else if (today.getDate() === 31 && today.getMonth() === 2) {
-            q(".event-label").innerHTML = "Wrapping up the first quarter of the year!";
+          else if (today.getMonth() === 2) {
+            if (today.getDate() === 21) q(".event-label").innerHTML = "Human Rights day";
+            else if (today.getDate() === 31) q(".event-label").innerHTML = "End of the first quarter";
+            else {
+              let rand = Math.floor(Math.random()*otherdays.length);
+              q(".event-label").innerHTML = otherdays[rand];
+            }
+
           }
           // April event labels.
-          else if (today.getDate() === 7 && today.getMonth() === 3) {
-            q(".event-label").innerHTML = "Good Friday!";
-          }
-          else if (today.getDate() === 8 && today.getMonth() === 3) {
-            q(".event-label").innerHTML = "Holy Saturday!";
-          }
-          else if (today.getDate() === 9 && today.getMonth() === 3) {
-            q(".event-label").innerHTML = "Easter Sunday!";
-          }
-          else if (today.getDate() === 10 && today.getMonth() === 3) {
-            q(".event-label").innerHTML = "Happy Family Day, Make It Count!";
-          }
-          else if (today.getDate() === 27 && today.getMonth() === 2) {
-            q(".event-label").innerHTML = "Happy Freedom Day!";
+          else if (today.getMonth() === 3) {
+            if (today.getDate() === 27) q(".event-label").innerHTML = "Freedom day";
           }
           // May event labels.
-          else if (today.getDate() === 1 && today.getMonth() === 4) {
-            q(".event-label").innerHTML = "Worker's Day!";
-          }
-          else if (today.getDate() === 7 && today.getMonth() === 4) {
-            q(".event-label").innerHTML = "Happy Twins Birthday, Inezile! Stay amazing.";
-          }
-          else if (today.getDate() === 14 && today.getMonth() === 4) {
-            q(".event-label").innerHTML = "Happy Mother's Day!";
+          else if (today.getMonth() === 4) {
+            if (today.getDate() === 1) q(".event-label").innerHTML = "Worker's day!";
+            else {
+              let rand = Math.floor(Math.random()*otherdays.length);
+              q(".event-label").innerHTML = otherdays[rand];
+            }
           }
           // June event labels.
-          else if (today.getDate() === 16 && today.getMonth() === 5) {
-            q(".event-label").innerHTML = "Happy Youth Day!";
-          }
-          else if (today.getDate() === 18 && today.getMonth() === 5) {
-            q(".event-label").innerHTML = "Happy Father's Day!";
-          }
-          else if (today.getDate() === 30 && today.getMonth() === 5) {
-            q(".event-label").innerHTML = "Halfway through the year!";
+          else if (today.getMonth() === 5) {
+            if (today.getDate() === 13) q(".event-label").innerHTML = "Dani's birthday";
+            else if (today.getDate() === 16) q(".event-label").innerHTML = "Youth day";
+            else if (today.getDate() === 30) q(".event-label").innerHTML = "Halfway through the year";
+            else {
+              let rand = Math.floor(Math.random()*otherdays.length);
+              q(".event-label").innerHTML = otherdays[rand];
+            }
           }
           // July, August event labels.
-          else if (today.getDate() === 9 && today.getMonth() === 7) {
-            q(".event-label").innerHTML = "Happy Women's Day!";
+          else if (today.getMonth() === 7) {
+            if (today.getDate === 9) q(".event-label").innerHTML = "Women's day";
+            else {
+              let rand = Math.floor(Math.random()*otherdays.length);
+              q(".event-label").innerHTML = otherdays[rand];
+            }
           }
-          // September, October, November events
-          else if (today.getDate() === 30 && today.getMonth() === 8) {
-            q(".event-label").innerHTML = "Into the final quarter of the year!";
+          // September events
+          else if (today.getMonth() === 8) {
+            if (today.getDate() === 30) q(".event-label").innerHTML = "Into the final quarter";
+            else {
+              let rand = Math.floor(Math.random()*otherdays.length);
+              q(".event-label").innerHTML = otherdays[rand];
+            }
           }
-          else if (today.getDate() === 13 && today.getMonth() === 10) {
-            q(".event-label").innerHTML = `LIYAZONGOMA! turns ${currentYear - 2022} today.`;
+          // November events
+          else if (today.getMonth() === 10) {
+            if (today.getDate() === 1) q(".event-label").innerHTML = "Continue to rest in peace Kirshnik. You're forever in our hearts.";
+            else if (today.getDate() === 2) q(".event-label").innerHTML = `The Last Rocket by Takeoff, turns ${currentYear - 2018} today.`;
+            else if (today.getDate() === 13) q(".event-label").innerHTML = `LIYAZONGOMA! turns ${currentYear - 2022} today.`;
+            else {
+              let rand = Math.floor(Math.random()*otherdays.length);
+              q(".event-label").innerHTML = otherdays[rand];
+            }
           }
-          else if (today.getDate() === 1 && today.getMonth() === 10) {
-            q(".event-label").innerHTML = "Continue to rest in peace Kirshnik. You're forever in our hearts!";
-          }
-          else if (today.getDate() === 2 && today.getMonth() === 10) {
-            q(".event-label").innerHTML = `The Last Rocket by Takeoff, turns ${currentYear - 2018} today.`;
-          }
+
           // December event labels.
-          else if (today.getDate() === 16 && today.getMonth() === 11) {
-            q(".event-label").innerHTML = "A Day of Reconciliation!";
+          else if (today.getMonth() === 11) {
+            if (today.getDate() === 16) q(".event-label").innerHTML = "A Day of Reconciliation!";
+            else if (today.getDate() === 24) q(".event-label").innerHTML = "Christmas eve";
+            else if (today.getDate() === 25) q(".event-label").innerHTML = "Merry Christmas";
+            else if (today.getDate() === 26) q(".event-label").innerHTML = "A Day of Goodwill";
+            else if (today.getDate() === 31) q(".event-label").innerHTML = "New Year's eve, enjoy responsibly.";
+            else {
+              let rand = Math.floor(Math.random()*otherdays.length);
+              q(".event-label").innerHTML = otherdays[rand];
+            }
           }
-          else if (today.getDate() === 24 && today.getMonth() === 11) {
-            q(".event-label").innerHTML = "Happy Christmas Eve!";
-          }
-          else if (today.getDate() === 25 && today.getMonth() === 11) {
-            q(".event-label").innerHTML = "Merry Christmas!";
-          }
-          else if (today.getDate() === 26 && today.getMonth() === 11) {
-            q(".event-label").innerHTML = "A Day of Goodwill!";
-          }
-          else if (today.getDate() === 31 && today.getMonth() === 11) {
-            q(".event-label").innerHTML = "Happy New Year's Eve!";
-          }
-          else {
-            q(".event-label").innerHTML = "Just another day!"
-          }
+          
           cell.classList.add("today-bg");
         }
         // January events.
@@ -177,9 +190,6 @@ function showCalendar(month, year) {
           cell.classList.add("event");
         }
         // April events
-        else if ((date === 7 || date === 8 || date === 9 || date === 10) && month === 3 && year === 2023) {
-          cell.classList.add("event");
-        }
         else if (date === 27 && month === 3) {
           cell.classList.add("event");
         }
@@ -187,7 +197,7 @@ function showCalendar(month, year) {
         else if ((date === 1 && month === 4) || (date === 16 && month === 5)) {
           cell.classList.add('event');
         }
-        
+
         // July, August, September events.
         else if ((date === 9 && month === 7) || (date === 24 && month === 8)) {
           cell.classList.add("event");
@@ -209,48 +219,47 @@ function showCalendar(month, year) {
 
 //window.addEventListener('touchmove', swipe);
 
-document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchmove', handleTouchMove, false);
 
-var xDown = null;                                                        
+var xDown = null;
 var yDown = null;
 
 function getTouches(evt) {
-  return evt.touches ||             // browser API
-         evt.originalEvent.touches; // jQuery
-}                                                     
-                                                                         
+  return evt.touches || evt.originalEvent.touches;
+}
+
 function handleTouchStart(evt) {
-    const firstTouch = getTouches(evt)[0];                                      
-    xDown = firstTouch.clientX;                                      
-    yDown = firstTouch.clientY;                                      
-};                                                
-                                                                         
+  const firstTouch = getTouches(evt)[0];
+  xDown = firstTouch.clientX;
+  yDown = firstTouch.clientY;
+};
+
 function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-        return;
-    }
+  if (!xDown || !yDown) {
+    return;
+  }
 
-    var xUp = evt.touches[0].clientX;                                    
-    var yUp = evt.touches[0].clientY;
+  var xUp = evt.touches[0].clientX;
+  var yUp = evt.touches[0].clientY;
 
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-                                                                         
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-        if ( xDiff > 0 ) {
-            next();
-        } else {
-            previous();
-        }                       
+  var xDiff = xDown - xUp;
+  var yDiff = yDown - yUp;
+
+  if (Math.abs(xDiff) > Math.abs(yDiff)) {
+    if (xDiff > 0) {
+      next();
     } else {
-        if ( yDiff > 0 ) {
-            // down swipe
-        } else { 
-            // up swipe
-        }                                                                 
+      previous();
     }
-    // reset values
-    xDown = null;
-    yDown = null;                                             
+  } else {
+    if (yDiff > 0) {
+      // Swiping down
+    } else {
+      // Swiping up
+    }
+  }
+  // Resetting the co-ordinates
+  xDown = null;
+  yDown = null;
 };
