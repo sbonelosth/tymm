@@ -10,12 +10,9 @@ function clock() {
     return new Date(year, month + 1, 0).getDate();
   };
 
-  let yearDays = 367 - new Date(currentYear, 0, 367).getDate();
-  let monthDays = 32 - new Date(currentYear, currentMonth, 32).getDate();
-
   // Constant variables
+  const yearDays = 367 - new Date(currentYear, 0, 367).getDate();
   const daySeconds = 86400;
-  const weekSeconds = 7 * daySeconds;
   const hourSeconds = 3600;
   const minSeconds = 60;
 
@@ -126,7 +123,7 @@ function clock() {
   nextYear.innerHTML = "<div class='progress-bar'></div>";
 
   let yearDisplay = q(".from-to-year");
-  yearDisplay.innerHTML = `<span class='dying-year'>${currentYear}</span>&nbsp;&nbsp;>&nbsp;&nbsp;<span class='pending-year'>${parseInt(currentYear + 1)}</span>`;
+  yearDisplay.innerHTML = `<span class='dying-year'>${currentYear}</span><span class='pending-year'>${parseInt(currentYear + 1)}</span>`;
 
   let progressCount = q(".progress-count");
   let fprogress = (100 * ((prog / daySeconds) / yearDays)).toFixed(1);
@@ -177,6 +174,7 @@ function clock() {
   let today = daySpan + ((date.toString().split(' ')[0]).bold() + `, </span>${currentDay} ` + (date.toString().split(' ').splice(1, 1).join(' '))).toUpperCase();
   q(".time-disp").innerHTML = `Day <b>${progressDay}</b> of ${yearDays}`;
   q(".date-disp").innerHTML = today;
+
   setInterval(clock, 1000);
 }
 

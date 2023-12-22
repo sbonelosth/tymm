@@ -1,16 +1,16 @@
 @font-face {
     font-family: montserrat;
-    src: url('../fonts/montserrat/Montserrat-Regular.otf');
+    src: url('./fonts/montserrat/Montserrat-Regular.otf');
 }
 
 @font-face {
     font-family: orbitron;
-    src: url('../fonts/orbitron/Orbitron-Black.ttf');
+    src: url('./fonts/orbitron/Orbitron-Black.ttf');
 }
 
 @font-face {
     font-family: spincycle;
-    src: url('../fonts/spincycle/spincycle_ot.otf');
+    src: url('./fonts/spincycle/spincycle_ot.otf');
 }
 
 body {
@@ -27,7 +27,7 @@ body {
     background-repeat: repeat;
     background-size: 100%;
     background-position: 0 0;
-    background-image: url("../res/timeshd.jpg");
+    background-image: url("./res/timeshd.jpg");
 }
 
 .transparent {
@@ -35,8 +35,8 @@ body {
     top: 0;
     right: 0;
     width: 100vw;
-    height: 100vw;
-    background-color: rgba(0 0 0 /75%);
+    height: 100vh;
+    background-color: rgba(0 0 0 / 75%);
     z-index: -1;
 }
 
@@ -112,6 +112,13 @@ body {
     justify-content: space-between;
 }
 
+.progress-bar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .year-progress {
     text-align: center;
     font-size: 14px;
@@ -119,7 +126,6 @@ body {
     line-height: 65px;
     width: 165px;
     height: 10px;
-    margin-top: 25px;
     background: #EBEBEB;
     border-radius: 10px;
     box-shadow:
@@ -129,23 +135,18 @@ body {
 }
 
 .progress-bar {
-    position: relative;
     height: 10px;
-    top: 0;
     background: rgba(22, 191, 98);
     box-shadow: 0 0 10px #111;
 }
 
-.progress-count {
-    position: absolute;
-    right: 0;
-    margin-top: 40px;
-    font-size: 13px;
-}
+.progress-count { font-size: 13px; }
 
 .from-to-year {
-    position: absolute;
-    right: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     font-family: orbitron;
     font-size: 20px;
 }
@@ -192,10 +193,10 @@ tbody>tr>:nth-child(1), tbody>tr>:nth-child(7n), .weekend, .event { color: #FB47
 table { margin: 0 auto; }
 
 .today-bg {
-    font-size: 35px;
+    font-size: 25px;
     padding: 0 0 5px 0;
-    color: deepskyblue;
-    border-top: 4px solid deepskyblue;
+    color: rgba(22, 191, 98);;
+    border-top: 4px solid rgba(22, 191, 98);;
     font-weight: bold;
     background: rgba(22, 191, 98, 0.3);
     transition: .4s;
@@ -227,12 +228,14 @@ button:hover { animation: opac 1s ease-out; }
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-image: url('../res/prev50.png');
+    background-image: url('./res/prev50.png');
     background-repeat: no-repeat;
     background-size: 40px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
-#next { background-image: url('../res/next50.png'); }
+#next { background-image: url('./res/next50.png'); }
 
 .col-sm-4 {
     height: 30px;
@@ -276,7 +279,7 @@ select {
     .container { transform: translateY(-4rem) scale(1); }
 
     body {
-        background-image: url("../res/times.jpg");
+        background-image: url("./res/times.jpg");
         background-repeat: repeat;
         background-size: 100%;
         background-position: 0 0;
@@ -289,7 +292,7 @@ select {
     .container { transform: translateY(-9rem) scale(0.8); }
 
     body {
-        background-image: url("../res/timeshd.jpg");
+        background-image: url("./res/timeshd.jpg");
         background-repeat: repeat;
         background-size: 100%;
         background-position: 0 0;
@@ -302,7 +305,7 @@ select {
     .container { transform: translateY(-8rem) scale(0.65); }
 
     body {
-        background-image: url("../res/timeshd.jpg");
+        background-image: url("./res/timeshd.jpg");
         background-repeat: repeat;
         background-size: 100%;
         background-position: 0 0;

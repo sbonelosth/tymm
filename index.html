@@ -1,11 +1,11 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title></title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <script src="./js/script.js"></script>
-    <link rel="stylesheet" href="./css/style.css" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -50,11 +50,13 @@
             </div>
             <div class="rem-text">remaining</div>
         </div>
-        <div class="from-to-year">
-        </div>
-        <div class="year-progress">
-        </div>
-        <div class="progress-count">
+        <div class="progress-bar-container">
+            <div class="from-to-year">
+            </div>
+            <div class="year-progress">
+            </div>
+            <div class="progress-count">
+            </div>
         </div>
     </div>
 
@@ -65,7 +67,8 @@
 
     <div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
         <div class="card">
-            <h3 class="card-header" id="month-year" onclick="showCalendar(new Date().getMonth(), new Date().getFullYear());"></h3>
+            <h3 class="card-header" id="month-year"
+                onclick="showCalendar(new Date().getMonth(), new Date().getFullYear());"></h3>
             <table class="table table-bordered table-responsive-sm" id="calendar">
                 <thead>
                     <tr>
@@ -105,12 +108,12 @@
         </select>
     </form>
     <script>
-        (function() {
+        (function () {
             var year_start = 1971;
             var year_end = (new Date).getFullYear(); //current year
             var selected_year = 1992; // 0 first option
 
-            var option = `<option>${year_start-1}</option>`; //first option
+            var option = `<option>${year_start - 1}</option>`; //first option
 
             for (var i = 0; i <= (2070 - year_start); i++) {
                 var year = (year_start + i);
@@ -120,8 +123,8 @@
             document.getElementById('year').innerHTML = option;
         })();
     </script>
-    <script src="./js/script.js"></script>
-    <script src="./js/calender_script.js"></script>
+    <script src="script.js"></script>
+    <script src="calender_script.js"></script>
 </body>
 
 </html>

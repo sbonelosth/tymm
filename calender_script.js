@@ -88,7 +88,7 @@ function showCalendar(month, year) {
         let cellTxt = document.createTextNode(date);
 
         // Color today's date and label events.
-        if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+        if (date === today.getDate() && month === today.getMonth()) {
           // January, February event labels.
           if (today.getMonth() === 0) {
             if (today.getDate() === 1) q(".event-label").innerHTML = "Happy New Year, make it count.";
