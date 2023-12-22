@@ -247,7 +247,7 @@ button:hover { animation: opac 1s ease-out; }
 
 .jump-to {
     position: fixed;
-    bottom: 0;
+    bottom: 2rem;
     width: 100%;
     text-align: center;
     padding: 0;

@@ -14,7 +14,7 @@ const otherdays = [
   "There's never enough time to do all the nothing you want. ~ B. Watterson",
   "Oh yes, the past can hurt. But you can either run from it or learn from it. ~ Rafiki (The Lion King)",
   "Today is a good day to try. ~ Quasimodo (The Hunchback of Notre Dame)",
-  "You may not own this day, but you can you it. ~ H. Mackey",
+  "You may not own this day, but you can use it. ~ H. Mackey",
   "Time is money. ~ B. Franklin",
   "Time is a storm in which we are all lost. ~ W. C. Williams",
   "Suspect each moment, for it is a thief, tiptoeing away with more than it brings. ~ J. Updike",
