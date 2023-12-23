@@ -285,6 +285,10 @@ select {
         background-position: 0 0;
     }
 
+    .event-label {
+        width: 80%;
+    }
+
     .jump-to { transform: translateX(0); }
 }
 
