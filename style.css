@@ -195,8 +195,8 @@ table { margin: 0 auto; }
 .today-bg {
     font-size: 25px;
     padding: 0 0 5px 0;
-    color: rgba(22, 191, 98);;
-    border-top: 4px solid rgba(22, 191, 98);;
+    color: rgba(22, 191, 98);
+    border-top: 4px solid rgba(22, 191, 98);
     font-weight: bold;
     background: rgba(22, 191, 98, 0.3);
     transition: .4s;
