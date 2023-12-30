@@ -1,181 +1,162 @@
 function q(selector) { return document.querySelector(selector); }
+// Global DOM elements
+const progDayText = q(".time-disp");
+const todayText = q(".date-disp");
+const progressText = q(".progress-count");
+const eventLabel = q(".event-label");
+const yearsDispDOM = q(".from-to-year");
 
-function clock() {
+// An object to setup the current day's date
+class Today {
+  constructor(progDayText, currentDate) {
+    this.progDayText = progDayText;
+    this.currentDate = currentDate;
+  }
+
+  getToday(date, progressDay, yearDays) {
+    let today = `<span>${(date.toString().split(' ')[0]).bold()}, </span>${date.getDate()} ${(date.toString().split(' ').splice(1, 1).join(' '))}`;
+    this.progDayText.innerHTML = `DAY <b>${progressDay}</b> of ${yearDays}`;
+    this.currentDate.innerHTML = today.toUpperCase();
+  }
+}
+
+function getCurrentDate(){
   let date = new Date();
-  let currentYear = date.getFullYear();
-  let currentMonth = date.getMonth();
-  let currentDay = date.getDate();
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  return { year, month, day };
+}
 
-  var getDaysInMonth = function(month, year) {
-    return new Date(year, month + 1, 0).getDate();
-  };
+// Creating progress and remaining values
+function getTimeValues(){
+  let currentDate = getCurrentDate();
+  let startDate = new Date(currentDate.year, 0, 1);
+  let endDate = new Date(currentDate.year, 11, 31);
+  let diffStart = Date.now() - startDate.getTime();
+  let diffEnd = endDate.getTime() - Date.now();
+  let progress = Math.floor(diffStart / 1000);
+  let remaining = Math.floor(diffEnd / 1000);
+  return { progress, remaining };
+}
 
-  // Constant variables
-  const yearDays = 367 - new Date(currentYear, 0, 367).getDate();
-  const daySeconds = 86400;
-  const hourSeconds = 3600;
-  const minSeconds = 60;
+// Setting up the displayed values
+function convertSeconds(seconds){
+  let date = new Date();
+  let remainingDays = getDaysInMonth(date.getMonth(), date.getFullYear()) - date.getDate();
+  let months = 11 - date.getMonth();
+  let weeks = Math.floor(remainingDays / 7);
+  let days = remainingDays % 7;
+  let hours = Math.floor(seconds / 3600) % 24;
+  let minutes = Math.floor(seconds / 60) % 60;
+  seconds = seconds % 60;
+  return { months, weeks, days, hours, minutes, seconds };
+}
 
-  // Calcuting current year's progress and remaining time.
-  let prog = ((date.getTime() / 1000) - (new Date(currentYear - 1, 11, 32, 0, 0, 0).getTime() / 1000)).toFixed(0);
-  let rem = (((new Date(currentYear, 11, 32, 0, 0, 0).getTime() / 1000) - (new Date(currentYear - 1, 11, 32, 0, 0, 0).getTime() / 1000)).toFixed(0)) - prog;
+// Inflating the DOM with values and labels
+function inflateDOM(remaining){
+  let valuesDOM = document.querySelectorAll(".value");
+  let labelsDOM = document.querySelectorAll(".label");
+  let timeValues = convertSeconds(remaining);
+  let timeArray = [
+    { value: timeValues.months, label: (timeValues.months === 1) ? "month" : "months" },
+    { value: timeValues.weeks, label: (timeValues.weeks === 1) ? "week" : "weeks" },
+    { value: timeValues.days, label: (timeValues.days === 1) ? "day" : "days" },
+    { value: timeValues.hours, label:(timeValues.hours === 1) ? "hour" : "hours" },
+    { value: timeValues.minutes, label: (timeValues.minutes === 1) ? "minute" : "minutes" },
+    { value: timeValues.seconds, label: (timeValues.seconds === 1) ? "second" : "seconds" }
+  ];
 
-  let remDays = getDaysInMonth(currentMonth, currentYear) - currentDay;
-  let remHours = Math.floor(rem / hourSeconds);
-  let remMinutes = Math.floor(rem / minSeconds);
-
-  let fmonths = 12 - (currentMonth + 1);
-  let fdays = remDays % 7;
-  let fweeks = Math.floor(remDays / 7);
-  let fhours = remHours % 24;
-  let fminutes = remMinutes % 60;
-  let fseconds = rem % 60;
-  
-  fhours = (fhours < 10 && fweeks <= 0 && fdays <= 0) ? "0" + fhours : fhours;
-  fminutes = (fminutes < 10 && fweeks <= 0 && fdays <= 0) ? "0" + fminutes : fminutes;
-  fseconds = (fseconds < 10 && fweeks <= 0 && fdays <= 0) ? "0" + fseconds : fseconds;
-
-  // Strings for labels.
-
-  let labels = ["month", "week", "day", "hour", "minute", "second"];
-  let pluralize = "s";
-  
-  // Assigning the DOM to variables.
-
-  let remMonthsDOM = q(".rem-months");
-  let remWeeksDOM = q(".rem-weeks");
-  let remDaysDOM = q(".rem-days");
-  let remHoursDOM = q(".rem-hours");
-  let remMinutesDOM = q(".rem-minutes");
-  let remSecondsDOM = q(".rem-seconds");
-
-  let remMonthsLBL = q(".rem-months-label");
-  let remWeeksLBL = q(".rem-weeks-label");
-  let remDaysLBL = q(".rem-days-label");
-  let remHoursLBL = q(".rem-hours-label");
-  let remMinutesLBL = q(".rem-minutes-label");
-  let remSecondsLBL = q(".rem-seconds-label");
-
-  // Setting up conditions for displaying remaining time.
-
-  remWeeksDOM.style.display = (fweeks === 0) ? "none" : "inline";
-  remWeeksLBL.style.display = (fweeks === 0) ? "none" : "inline";
-
-  remDaysDOM.style.display = (fdays === 0) ? "none" : "inline";
-  remDaysLBL.style.display = (fdays === 0) ? "none" : "inline";
-
-  remMonthsDOM.style.display = (fmonths === 0) ? "none" : "inline";
-  remMonthsLBL.style.display = (fmonths === 0) ? "none" : "inline";
-
-  if (fmonths >= 1) {
-    remSecondsDOM.style.display = "none";
-    remMinutesDOM.style.display = "none";
-    remHoursDOM.style.display = "none";
-
-    remMonthsLBL.innerHTML = fmonths > 1 ? labels[0] + pluralize : labels[0];
-    remWeeksLBL.innerHTML = fweeks > 1 ? labels[1] + pluralize : labels[1];
-    remDaysLBL.innerHTML = fdays > 1 ? labels[2] + pluralize : labels[2];
+  for (let i = 0; i < 3; i++) {
+    const index = timeArray.findIndex( (item) => item.value);
+    valuesDOM[i].textContent = timeArray[index].value;
+    labelsDOM[i].textContent = timeArray[index].label;
+    timeArray.splice(index, 1);
   }
+}
 
-  else if (fmonths < 1 && fweeks > 0) {
-    remSecondsDOM.style.display = "none";
-    remMinutesDOM.style.display = "none";
+function getDaysInMonth(month, year) {
+  return new Date(year, month + 1, 0).getDate();
+}
 
-    remWeeksLBL.innerHTML = fweeks > 1 ? labels[1] + pluralize : labels[1];
-    remDaysLBL.innerHTML = fdays > 1 ? labels[2] + pluralize : labels[2];
-    remHoursLBL.innerHTML = fhours > 1 ? labels[3] + pluralize : labels[3];
-  }
+function progressTextDOM(progressNum){
+  let progressStr = progressNum.toString();
+  return (progressStr.charAt(progressStr.length - 1) === "0") ? Math.floor(progressNum) + "% COMPLETE" : progressNum + "% COMPLETE";
+}
 
-  else if (fmonths < 1 && fweeks < 1 && fdays > 0) {
-    remSecondsDOM.style.display = "none";
-
-    remDaysLBL.innerHTML = fdays > 1 ? labels[2] + pluralize : labels[2];
-    remHoursLBL.innerHTML = fhours > 1 ? labels[3] + pluralize : labels[3];
-    remMinutesLBL.innerHTML = fminutes > 1 ? labels[4] + pluralize : labels[4];
-  }
-
-  else if (fmonths < 1 && fweeks < 1 && fdays < 1) {
-    remHoursDOM.style.transform = "scale(1.5)";
-    remMinutesDOM.style.transform = "scale(1.5)";
-    remSecondsDOM.style.transform = "scale(1.5)";
-    
-    q(".countdown").style.flexDirection = "row";
-    q(".countdown-container").style.width = "105px";
-    q(".countdown-labels").style.display = "none";
-    q(".rem-text").style.display = "none";
-    
-    remHoursLBL.innerHTML = fhours > 1 ? labels[3] + pluralize : labels[3];
-    remMinutesLBL.innerHTML = fminutes > 1 ? labels[4] + pluralize : labels[4];
-    remSecondsLBL.innerHTML = fseconds > 1 ? labels[5] + pluralize : labels[5];
-  }
- 
-
-  // Inflating the DOM with remaining time.
-  remMonthsDOM.innerHTML = fmonths;
-  remWeeksDOM.innerHTML = fweeks;
-  remDaysDOM.innerHTML = fdays;
-  remHoursDOM.innerHTML = fhours;
-  remMinutesDOM.innerHTML = fminutes;
-  remSecondsDOM.innerHTML = fseconds;
-
-  // Setting up a progress bar for the loading year.
-  let nextYear = q(".year-progress");
-  nextYear.innerHTML = "<div class='progress-bar'></div>";
-
-  let yearDisplay = q(".from-to-year");
-  yearDisplay.innerHTML = `<span class='dying-year'>${currentYear}</span><span class='pending-year'>${parseInt(currentYear + 1)}</span>`;
-
-  let progressCount = q(".progress-count");
-  let fprogress = (100 * ((prog / daySeconds) / yearDays)).toFixed(1);
-  let fprogressStr = fprogress.toString();
-  progressCount.innerHTML = (fprogressStr.charAt(fprogressStr.length - 1) == "0") ? Math.floor(fprogress) + "% COMPLETE" : fprogress + "% COMPLETE";
+function yearsDisplay(currentYear, progressNum){
+  yearsDispDOM.innerHTML = `<span class='dying-year'>${currentYear}</span><span class='pending-year'>${currentYear + 1}</span>`;
 
   let fadingYear = q(".dying-year");
   let pendingYear = q(".pending-year");
 
-  fadingYear.style.opacity = 1.1 - (fprogress / 100).toFixed(1);
-  pendingYear.style.opacity = 1.1 - ((100 - fprogress) / 100).toFixed(1);
+  fadingYear.style.opacity = 1.1 - (progressNum / 100).toFixed(1);
+  pendingYear.style.opacity = 0.1 + (progressNum / 100).toFixed(1);
+  fadingYear.style.filter = `blur(${(progressNum / 50).toFixed(1)}px)`;
+  pendingYear.style.filter = `blur(${(2 - progressNum / 50).toFixed(1)}px)`;
 
-  fadingYear.style.color = (currentYear === 2021) ? "#BDB220" : "#EBEBEB";
-
-  fadingYear.style.filter = `blur(${((2 * fprogress) / 100).toFixed(1)}px)`;
-  pendingYear.style.filter = `blur(${((2 * (100 - fprogress)) / 100).toFixed(1)}px)`;
+  let nextYear = q(".year-progress");
+  nextYear.innerHTML = "<div class='progress-bar'></div>";
 
   let progressBar = q(".progress-bar");
-  let fprogressWidth = ((165 * (1 - (rem / daySeconds) / yearDays))).toFixed(0);
-  let eventLBL = q(".event-label");
-  fprogressWidth = (Math.ceil(fprogressWidth) - fprogressWidth) < 0.5 ? Math.ceil(fprogressWidth) : Math.floor(fprogressWidth);
-  progressBar.style.width = `${fprogressWidth}px`;
-  let R;
-  let G;
-  if (fprogress <= 25) {
-    R = (((4 * fprogress) / 100) * (255 / 2)).toFixed(0);
-    progressBar.style.backgroundColor = `rgba(${R}, 255, 75)`;
-    progressCount.style.color = `rgba(${R}, 255, 75)`;
-    eventLBL.style.backgroundColor = `rgba(${R}, 255, 75, 0.3)`;
-  }
-
-  else if (fprogress > 25 && fprogress <= 50) {
-    R = (((2 * fprogress) / 100) * (255)).toFixed(0);
-    progressBar.style.backgroundColor = `rgba(${R}, 255, 75)`;
-    progressCount.style.color = `rgba(${R}, 255, 75)`;
-    eventLBL.style.backgroundColor = `rgba(${R}, 255, 75, 0.3)`;
-  }
-
-  else if (fprogress > 50 && fprogress <= 100) {
-    G = ((2 * (100 - fprogress) / 100) * (255)).toFixed(0);
-    progressBar.style.backgroundColor = `rgba(255, ${G}, 75)`;
-    progressCount.style.color = `rgba(255, ${G}, 75)`;
-    eventLBL.style.backgroundColor = `rgba(255, ${G}, 75, 0.3)`;
-  }
-
-  let daySpan = "<span class='day'>";
-  let progressDay = Math.ceil(prog / daySeconds);
-  let today = daySpan + ((date.toString().split(' ')[0]).bold() + `, </span>${currentDay} ` + (date.toString().split(' ').splice(1, 1).join(' '))).toUpperCase();
-  q(".time-disp").innerHTML = `Day <b>${progressDay}</b> of ${yearDays}`;
-  q(".date-disp").innerHTML = today;
-
-  setInterval(clock, 1000);
+  let progressWidth = 165 * (progressNum / 100);
+  
+  progressBar.style.width = `${progressWidth}px`;
+  customRGB(progressBar, progressNum);
 }
 
-clock();
+function customizeCountdown(){
+  let { progress, remaining } = getTimeValues();
+  let currentDate = getCurrentDate();
+  let currentYear = currentDate.year;
+  let yearInMillis = new Date(currentYear, 11, 31).getTime() - new Date(currentYear, 0, 0).getTime();
+  let yearDays = Math.floor(yearInMillis/(1000 * 86400));
+  let progressNum = ((100 * progress / 86400) / yearDays).toFixed(1);
+  progressText.innerHTML = progressTextDOM(progressNum);
+
+  let progressDay = Math.ceil(progress / 86400);
+  
+  let today = new Today(progDayText, todayText);
+  today.getToday(new Date(), progressDay, yearDays);
+
+  yearsDisplay(currentYear, progressNum);
+}
+
+function customRGB(progressBar, progressNum){
+  let R;
+  let G;
+  if (progressNum <= 25) {
+    R = Math.floor(2.0416 * progressNum);
+    progressBar.style.backgroundColor = `rgb(${R}, 255, 75)`;
+    eventLabel.style.backgroundColor = `rgba(${R}, 255, 75, 0.3)`;
+  }
+
+  else if (progressNum > 25 && progressNum <= 50) {
+    R = Math.floor(5.1 * progressNum);
+    progressBar.style.backgroundColor = `rgb(${R}, 255, 75)`;
+    eventLabel.style.backgroundColor = `rgba(${R}, 255, 75, 0.3)`;
+  }
+
+  else {
+    G = Math.floor((2 - progressNum / 50) * 255);
+    progressBar.style.backgroundColor = `rgb(255, ${G}, 75)`;
+    eventLabel.style.backgroundColor = `rgba(255, ${G}, 75, 0.3)`;
+  }
+}
+
+function setCountdown() {
+  let { progress, remaining } = getTimeValues();
+  inflateDOM(remaining);
+  let interval = setInterval(() => {
+    progress++;
+    remaining--;
+    customizeCountdown();
+    inflateDOM(remaining);
+    if (remaining === 0) {
+      clearInterval(interval);
+      alert("HAPPY NEW YEAR!");
+    }
+  }, 1000);
+}
+
+setCountdown();

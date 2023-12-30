@@ -160,7 +160,7 @@ body {
 .container {
     margin: 0 auto;
     width: 80%;
-    transform: translateY(-10vh) scale(1);
+    transform: translateY(-20vh) scale(1);
 }
 
 td, th {
@@ -199,6 +199,7 @@ table { margin: 0 auto; }
     border-top: 4px solid rgba(22, 191, 98);
     font-weight: bold;
     background: rgba(22, 191, 98, 0.3);
+    border-radius: 10px;
     transition: .4s;
 }
 
@@ -289,7 +290,7 @@ select {
         width: 80%;
     }
 
-    .jump-to { transform: translateX(0); }
+    .jump-to { display: none; }
 }
 
 @media screen and (max-height:560px) {
