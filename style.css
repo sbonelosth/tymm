@@ -290,7 +290,7 @@ select {
         width: 80%;
     }
 
-    .jump-to { display: none; }
+    .jump-to { transform: translateX(0); }
 }
 
 @media screen and (max-height:560px) {
