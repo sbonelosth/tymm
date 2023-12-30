@@ -81,7 +81,8 @@ function getDaysInMonth(month, year) {
 
 function progressTextDOM(progressNum){
   let progressStr = progressNum.toString();
-  return (progressStr.charAt(progressStr.length - 1) === "0") ? Math.floor(progressNum) + "% COMPLETE" : progressNum + "% COMPLETE";
+  let isWhole = progressStr.charAt(progressStr.length - 1) === "0"
+  return (isWhole) ? Math.floor(progressNum) + "% COMPLETE" : progressNum + "% COMPLETE";
 }
 
 function yearsDisplay(currentYear, progressNum){
