@@ -163,6 +163,10 @@ body {
     transform: translateY(-20vh) scale(1);
 }
 
+.next-month, .prev-month {
+    opacity: 0.2;
+}
+
 td, th {
     padding: 8px;
     height: 25px;
@@ -192,15 +196,20 @@ tbody>tr>:nth-child(1), tbody>tr>:nth-child(7n), .weekend, .event { color: #FB47
 .card-header { text-align: center; }
 table { margin: 0 auto; }
 
-.today-bg {
-    font-size: 25px;
-    padding: 0 0 5px 0;
+.current-day, .otherdays {
+    font-size: large;
     color: rgba(22, 191, 98);
     border-top: 4px solid rgba(22, 191, 98);
     font-weight: bold;
     background: rgba(22, 191, 98, 0.3);
     border-radius: 10px;
     transition: .4s;
+}
+
+.otherdays {
+    color: grey;
+    border-top: 4px solid grey;
+    background: rgba(22, 191, 98, 0.3);
 }
 
 button {
