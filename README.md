@@ -1,6 +1,6 @@
-# countdown-calender
+# countdown-calender (🔗: https://tymm.netlify.app)
 
-# This is a simple countdown calender I created out of boredom... The calender is valid up until 2070,
+# This is a simple countdown calender I created out of boredom... The calender can only jump up to 2070,
 
 # Anyone is welcome to use and modify it at anytime.
 
