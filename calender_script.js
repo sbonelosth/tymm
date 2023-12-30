@@ -103,7 +103,7 @@ function showCalendar(month, year) {
                 }
 
                 // Selecting events or holidays and adding labels to them
-                if (date === today.getDate() && month === today.getMonth()) {
+                if (date === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
                     switch (today.getMonth()) {
                         // January events
                         case 0:
@@ -251,7 +251,6 @@ function showCalendar(month, year) {
 				cellTxt = document.createTextNode(date++);
 			}
 			cell.appendChild(cellTxt);
-			cell.classList.add(".otherdays")
 			row.appendChild(cell);
 		}
 		// Finally, appending each row into calendar body.

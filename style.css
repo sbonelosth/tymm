@@ -176,19 +176,30 @@ td, th {
 
 td {
     padding-bottom: 20px;
-    font-size: 15px;
+    font-size: large;
+    color: grey;
+    border-top: 4px solid grey;
+    border-radius: 10px;
+    background: rgba(69, 70, 69, 0.3);
 }
 
 th { padding: 10px 0; }
 tbody>tr>:nth-child(1), tbody>tr>:nth-child(7n), .weekend, .event { color: #FB476A; }
 
+.event {
+    border-top: 4px solid grey;
+    background: rgba(69, 70, 69, 0.3);
+    border-radius: 10px;
+}
+
 .event-label {
-    width: 60%;
+    width: 55%;
     margin: 0 auto;
-    max-width: 300px;
+    max-width: 280px;
     color: whitesmoke;
     text-align: center;
     padding: 10px;
+    margin-top: 10px;
     border-radius: 10px;
 }
 
@@ -196,19 +207,10 @@ tbody>tr>:nth-child(1), tbody>tr>:nth-child(7n), .weekend, .event { color: #FB47
 .card-header { text-align: center; }
 table { margin: 0 auto; }
 
-.current-day, .otherdays {
-    font-size: large;
+.current-day {
     color: rgba(22, 191, 98);
     border-top: 4px solid rgba(22, 191, 98);
     font-weight: bold;
-    background: rgba(22, 191, 98, 0.3);
-    border-radius: 10px;
-    transition: .4s;
-}
-
-.otherdays {
-    color: grey;
-    border-top: 4px solid grey;
     background: rgba(22, 191, 98, 0.3);
 }
 
