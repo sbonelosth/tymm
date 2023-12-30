@@ -13,6 +13,11 @@
     src: url('./fonts/spincycle/spincycle_ot.otf');
 }
 
+* {
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 8px 1px #000;
+}
+
 body {
     font-family: montserrat;
     margin: 0;
@@ -28,6 +33,7 @@ body {
     background-size: 100%;
     background-position: 0 0;
     background-image: url("./res/timeshd.jpg");
+    word-spacing: 4%;
 }
 
 .transparent {
@@ -62,7 +68,6 @@ body {
     font-weight: bold;
     font-size: 15px;
     margin-top: 5px;
-    text-shadow: 1px 1px 2px #000;
     transform: translateX(35px);
 }
 
@@ -86,8 +91,7 @@ body {
     text-shadow: 1px 1px 2px #111;
 }
 
-.rem-months, .rem-days, .rem-weeks,
-.rem-hours, .rem-minutes, .rem-seconds {
+.value {
     width: 22px;
     height: 22px;
     background: #EBEBEB;
@@ -95,6 +99,7 @@ body {
     font-size: 15px;
     line-height: 20px;
     text-align: center;
+    letter-spacing: normal;
     margin-top: 5px;
     border-radius: 3px;
     box-shadow: 0 0 5px #111;
@@ -178,19 +183,13 @@ td {
     padding-bottom: 20px;
     font-size: large;
     color: grey;
-    border-top: 4px solid grey;
+    box-shadow: 1px 1px 10px 1px rgba(0 0 0 / 20%), -1px -1px 10px 1px rgba(0 0 0 / 20%);
     border-radius: 10px;
-    background: rgba(69, 70, 69, 0.3);
+    background-image: linear-gradient(to top, rgba(40, 40, 40, 0.5), rgba(70, 70, 70, 0));
 }
 
 th { padding: 10px 0; }
 tbody>tr>:nth-child(1), tbody>tr>:nth-child(7n), .weekend, .event { color: #FB476A; }
-
-.event {
-    border-top: 4px solid grey;
-    background: rgba(69, 70, 69, 0.3);
-    border-radius: 10px;
-}
 
 .event-label {
     width: 55%;
@@ -209,9 +208,10 @@ table { margin: 0 auto; }
 
 .current-day {
     color: rgba(22, 191, 98);
-    border-top: 4px solid rgba(22, 191, 98);
     font-weight: bold;
-    background: rgba(22, 191, 98, 0.3);
+    box-shadow: 1px 1px 10px 1px rgba(0 0 0 / 20%), -1px -1px 10px 1px rgba(0 0 0 / 20%);
+    border-radius: 10px;
+    background-image: linear-gradient(to top, rgba(22, 191, 98, 0.4), rgba(22, 191, 98, 0));
 }
 
 button {
@@ -259,7 +259,7 @@ button:hover { animation: opac 1s ease-out; }
 
 .jump-to {
     position: fixed;
-    bottom: 2rem;
+    bottom: 1rem;
     width: 100%;
     text-align: center;
     padding: 0;
