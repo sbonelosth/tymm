@@ -47,6 +47,7 @@ function convertSeconds(seconds){
   let months = 11 - date.getMonth();
   let weeks = Math.floor(remainingDays / 7);
   let days = remainingDays % 7;
+  seconds = seconds + 86400;
   let hours = Math.floor(seconds / 3600) % 24;
   let minutes = Math.floor(seconds / 60) % 60;
   seconds = seconds % 60;
@@ -147,12 +148,11 @@ function customRGB(progressBar, progressNum){
 
 function setCountdown() {
   let { progress, remaining } = getTimeValues();
-  inflateDOM(remaining);
   let interval = setInterval(() => {
     progress++;
     remaining--;
-    customizeCountdown();
     inflateDOM(remaining);
+    customizeCountdown();
     if (remaining === 0) {
       clearInterval(interval);
       alert("HAPPY NEW YEAR!");
