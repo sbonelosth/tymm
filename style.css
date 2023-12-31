@@ -203,7 +203,7 @@ tbody>tr>:nth-child(1), tbody>tr>:nth-child(7n), .weekend, .event { color: #FB47
 }
 
 .month { color: #EC407A; }
-.card-header { text-align: center; }
+.card-header { text-align: center; margin: 0; }
 table { margin: 0 auto; }
 
 .current-day {
