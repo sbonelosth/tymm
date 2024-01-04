@@ -41,7 +41,8 @@ function getTimeValues(){
 }
 
 // Setting up the displayed values
-function convertSeconds(seconds){
+function convertSeconds(seconds)
+{
   let date = new Date();
   let remainingDays = getDaysInMonth(date.getMonth(), date.getFullYear()) - date.getDate();
   let months = 11 - date.getMonth();
